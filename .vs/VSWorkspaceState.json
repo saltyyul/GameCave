@@ -1,6 +1,15 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GameCave",
+    "\\GameCave\\Controllers",
+    "\\GameCave\\Data\\Attributes",
+    "\\GameCave\\Models",
+    "\\GameCave\\Models\\ViewModels",
+    "\\GameCave\\Models\\ViewModels\\CartVMs",
+    "\\GameCave\\Models\\ViewModels\\ReviewVMs",
+    "\\GameCave\\obj",
+    "\\GameCave\\Properties"
   ],
   "SelectedNode": "\\GameCave.sln",
   "PreviewInSolutionExplorer": false

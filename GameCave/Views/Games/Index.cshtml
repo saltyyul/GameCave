@@ -1,0 +1,81 @@
+﻿@model IEnumerable<GameCave.Models.ViewModels.GameVMs.GameDetailsViewModel>
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+    @if (User.Identity.Name != null)
+{
+    @if (UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "admin").Result)
+    {
+        <div style="display:flex;flex-direction: column;align-items: center;">
+            <a class="create-button" asp-action="Create">Create New</a>
+            <p class="caution-text">This button is only accessible for admins!</p>
+        </div>
+    }
+}
+</div>
+
+<div class="main-container">
+    @if (Model != null)
+        @foreach (var item in Model)
+        {
+            <div class="game-card">
+                @if (string.IsNullOrEmpty(item.ImageURL))
+                {
+                    <p>No preview available. Sorry pal :c</p>
+                }
+                else
+                {
+                    <img class="thumbnail" src="@item.ImageURL" alt=@string.Concat(item.Name, " ", item.Description) />
+                }
+
+                <div class="info-container">
+                    <div class="info-header">
+                        <h3 class="game-title">@Html.DisplayFor(modelItem => item.Name)</h3>
+                        <p class="company">
+                            By  @Html.DisplayFor(modelItem => item.Company.Name)
+                        </p>
+                    </div>
+
+                    <div class="genres-container">
+                        @if (item.Genres.Count > 0)
+                        {
+                            foreach (var genre in item.Genres)
+                            {
+                                <p class="genre">@genre.Name</p>
+                            }
+                        }
+                        else
+                        {
+                            <span>No genres set</span>
+                        }
+                    </div>
+
+                    <div class="add-container">
+                        <a class="bttn-add-to-cart" asp-action="AddToCart" asp-route-gameId="@item.Id">Add to cart</a>
+                        <p class="price">@Html.DisplayFor(modelItem => item.Price) &#x20AC</p>
+                    </div>
+                    <br>
+                    <a class="bttn-details" asp-action="Details" asp-route-id="@item.Id">See more</a>
+
+                    @if (User.Identity.Name != null)
+                    {
+                        @if (UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "admin").Result)
+                        {
+                            <div class="admin-edit-bttns-container">
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id"> Delete </a>
+                                <p class="caution-text">Accessible for admins only!</p>
+                            </div>
+                        }
+
+                    }
+                </div>
+            </div>
+
+        }
+</div>

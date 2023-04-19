@@ -1,0 +1,67 @@
+﻿@model IEnumerable<GameCave.Models.ViewModels.ReviewVMs.ReviewViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="main-title-container">
+    <h1>Reviews</h1>
+    <p>
+        <b>NOTE: </b>This page is only accessible for admins. To edit or delete a review please proceed to use the shortcuts or open the details page of the review. To add a new review open the details page of the desired game and navigate to <i>Add Review</i>
+    </p>
+</div>
+@*<a asp-action="Create">Create New</a>*@
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+
+            <th class="action-container"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+            @foreach (var item in Model)
+            {
+                <tr class="datarow">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @item.Description.Substring(0,item.Description.Length/4).ToString()
+                        ...
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Game.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Created)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy.UserName)
+                    </td>
+
+                    <td class="buttons">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+    </tbody>
+</table>

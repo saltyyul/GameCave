@@ -1,0 +1,23 @@
+﻿@model GameCave.Data.Company
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="main-title-container">
+    <h1>Delete</h1>
+    <h3>Are you sure you want to delete this company from the database? This proccess is irreversible!</h3>
+</div>
+<hr />
+<div class="details-container">
+    <div class="detail-pair">
+        <h4 class="text-bold">Name: </h4>
+        <p>@Html.DisplayFor(model => model.Name)</p>
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input class="delete-button" type="submit" value="Delete" class="btn btn-danger" />
+        <a class="link-button" asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,47 @@
+﻿@model GameCave.Models.ViewModels.ReviewVMs.ReviewViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="main-title-container">
+    <h1>Details for review: </h1>
+</div>
+<hr>
+<div>
+    <div class="details-container">
+        <div class="detail-pair">
+            <h4 class="text-bold">Title: </h4>
+            <p>@Html.DisplayFor(model => model.Title)</p>
+        </div>
+        <div class="detail-pair">
+            <h4 class="text-bold">Description: </h4>
+            <p>@Html.DisplayFor(model => model.Description)</p>
+        </div>
+        <div class="detail-pair">
+            <h4 class="text-bold">For Game: </h4>
+            <p>@Html.DisplayFor(model => model.Game.Name)</p>
+        </div>
+        <div class="detail-pair">
+            <h4 class="text-bold">Created: </h4>
+            <p>@Html.DisplayFor(model => model.Created)</p>
+        </div>
+        <div class="detail-pair">
+            <h4 class="text-bold">Modified: </h4>
+            <p>@Html.DisplayFor(model => model.Modified)</p>
+        </div>
+        <div class="detail-pair">
+            <h4 class="text-bold">Created by: </h4>
+            <p>@Html.DisplayFor(model => model.CreatedBy.UserName)</p>
+        </div>
+        <div class="detail-pair">
+            <h4 class="text-bold">Modified by: </h4>
+            <p>@Html.DisplayFor(model => model.ModifiedBy.UserName)</p>
+        </div>
+    </div>
+
+    <div class="go-back-container">
+        <a class="link-button" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+        <a class="link-button" asp-action="Delete" asp-route-id="@Model?.Id">Delete</a>
+        <a class="link-button" asp-action="Index">Back to List</a>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model GameCave.Data.Company
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="main-title-container">
+    <h1>Edit your company</h1>
+</div>
+
+<hr />
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label><br />
+        <input asp-for="Name" class="form-control" /><br />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <input type="submit" value="Save" class="create-button" />
+    </div>
+</form>
+
+
+<div class="go-back-container">
+    <a class="link-button" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

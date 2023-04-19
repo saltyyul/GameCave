@@ -1,0 +1,135 @@
+﻿@model GameCave.Models.ViewModels.CartVMs.CartViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .cart-main {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .cart-container {
+        display: flex;
+        flex-direction: column;
+        width: 50vw;
+        justify-content: space-between;
+        padding: 3vw 5vw 3vw 5vw;
+        margin-left: 3vw;
+        border-radius: 15px;
+        box-shadow: rgb(255,255,255,0.3) 0px 0px 19px 6px;
+    }
+
+        .cart-container .quantity-container, .cart-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            /* width: 50vw; */
+            margin-top: 2vh;
+            justify-content: space-between;
+        }
+
+        .cart-container .cart-item > img {
+            width: 10vw;
+            height: 10vw;
+            object-fit: scale-down;
+        }
+
+        .cart-container .quantity-button {
+            color: white;
+            text-decoration: none;
+            margin: 1vw;
+            font-size: 1.3rem;
+        }
+
+        .cart-container .total {
+            text-align: right;
+            font-size: 1.6rem;
+        }
+
+    .cart-main .delivery-form {
+        display: flex;
+        flex-direction: column;
+        width: 23vw;
+        margin: 5vw 5vw 5vw 0px;
+    }
+
+        .cart-main .delivery-form textarea {
+            resize: none;
+            width: 23vw;
+            height: 15vh;
+        }
+</style>
+<div class="cart-main">
+    <div class="cart-container">
+        @if (Model.Items.Count() > 0)
+        {
+            @foreach (var i in Model.Items)
+            {
+                <div class="cart-item">
+
+                    <img src=@i.ImageUrl alt="">
+                    <p>@i.Name</p>
+                    <p>@i.Price &#x20AC</p>
+                    <div class="quantity-container">
+                        <a class="quantity-button" asp-action="DecreaseQuantity" asp-route-cartItemId="@i.Id">-</a>
+                        <p>@i.Quantity</p>
+                        <a class="quantity-button" asp-action="IncreaseQuantity" asp-route-cartItemId="@i.Id">+</a>
+                        <a class="link-button" asp-action="RemoveGame" asp-route-cartItemId="@i.Id">Remove</a>
+
+                    </div>
+                    <p class="subtotal">@(i.Price * i.Quantity) &#x20AC</p>
+
+
+                </div>
+                <hr style="width:100%; color: rgb(255,255,255,0.7);" />
+            }
+            <p class="total">Total: @ViewBag.Total &#x20AC</p>
+
+        }
+        else
+        {
+            <h1>
+                You have no items in your cart!
+            </h1>
+        }
+    </div>
+    <div class="delivery-form">
+        <form class="delivery-form">
+            <label class="form-lbl" for="fullname">Full name: </label>
+            <input class="form-control" type="text" id="fullname" name="Full_Name" /><br />
+
+            <label class="form-lbl" for="email">Email: </label>
+            <input class="form-control" type="email" id="email" name="Email" /><br />
+
+            <label class="form-lbl" for="city">City and postal code:</label>
+            <input class="form-control" type="text" id="city" name="City_and_postal_code" /><br />
+
+            <label class="form-lbl" for="address">Address:</label>
+            <input class="form-control" type="text" id="address" name="Address" /><Br />
+
+            <label class="form-lbl" for="notes">Notes: </label>
+            <textarea class="form-control" id="notes" placeholder="If you have any notes place enter here"></textarea><br />
+
+            <label class="form-lbl">Delivery methods:</label>
+
+            <div style="display:flex; flex-direction: row;">
+                <input type="radio" id="courrier_office" name="delivery_method" value="Office Econt" title="Office Econt" />
+                <label for="courrier_office">Econt Office</label>
+            </div>
+
+            <div style="display:flex; flex-direction: row;">
+                <input type="radio" id="courrier_home" name="delivery_method" value="Home Address Econt" title="Econt Home Address" />
+                <label for="courrier_home">Econt Home Address</label>
+            </div>
+
+            <p>We only accept payment on delivery.</p>
+            
+            <input type="submit" class="create-button" id="place-order-bttn" name="Place Order" title="Place order now" value="Place order"/>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+﻿@using GameCave.Data
+@model GameCave.Models.ViewModels.GameVMs.GameDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="main-title-container">
+    <h1>Details for game: </h1>
+</div>
+<hr />
+<div>
+    <div class="game-details">
+        <div class="img-container">
+            @if (Model.ImageURL == null)
+            {
+                <p>No image available.</p>
+            }
+            else
+            {
+                <img src="@Model.ImageURL" alt=@Model.Description />
+            }
+        </div>
+        <div class="info-container">
+            <div class="info-header">
+                <h3 class="game-title">@Html.DisplayFor(model => model.Name)</h3>
+                <p class="description">@Html.DisplayFor(model => model.Description)</p>
+                <p class="company">Developed by @Html.DisplayFor(model => model.Company.Name)</p>
+            </div>
+            <br>
+            <div class="genres-container">
+                @if (Model.Genres.Count > 0)
+                {
+                    foreach (var genre in Model.Genres)
+                    {
+                        <p class="genre">@genre.Name</p>
+                    }
+                }
+                else
+                {
+                    <span>No genres set</span>
+                }
+            </div>
+
+            <p class="quantity">Available quantity: @Model.Quantity</p>
+            <p class="price">@Html.DisplayFor(model => model.Price) &#x20AC</p>
+            <br>
+            <div class="add-container">
+                <a class="bttn-add-to-cart" asp-action="AddToCart" asp-route-gameId="@Model.Id">Add to cart</a>
+            </div>
+        </div>
+    </div>
+
+    <a class="create-button" style="margin-left: 3vw;" href="/Reviews/Create?gameId=@Model.Id">Add Review</a>
+    @if (Model.Reviews.Count <= 0)
+    {
+        <p>No reviews to show.</p>
+    }
+    else
+    {
+        foreach (var review in Model.Reviews.OrderByDescending(x => x.Modified))
+        {
+            <div class="reviews-container">
+
+                <div class="review">
+                    <h2 class="review-title">@review.Title</h2>
+                    <p class="review-description">@review.Description</p>
+                    <p class="review-userinfo">Posted by: @review.CreatedBy.UserName</p>
+                    <p class="review-userinfo">Posted: @review.Modified</p>
+                </div>
+                <div>
+                    @if ((ViewData["IsAdmin"].Equals(true)) || (ViewData["UserId"].Equals(review.CreatedById) && ViewData["UserId"] != null))
+                    {
+                        <a class="link-button" href="/Reviews/Edit/@review.Id">Edit</a>
+                        <a class="link-button" href="/Reviews/Delete/@review.Id">Delete</a>
+                    }
+                </div>
+            </div>
+
+        }
+    }
+
+</div>

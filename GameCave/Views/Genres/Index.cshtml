@@ -1,0 +1,40 @@
+﻿@model IEnumerable<GameCave.Data.Genre>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="main-title-container">
+    <h1>Genres</h1>
+
+    <div>
+        <p><b>NOTE: </b>This page is only accessible for admins.</p>
+        <p>
+            <a class="create-button" asp-action="Create">Create New</a>
+        </p>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="action-container"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="datarow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="buttons">
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

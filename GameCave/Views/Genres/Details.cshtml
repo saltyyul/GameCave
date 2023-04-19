@@ -1,0 +1,20 @@
+﻿@model GameCave.Data.Genre
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="main-title-container">
+    <h1>Details for genre: </h1>
+</div>
+<hr />
+<div class="details-container">
+    <div class="detail-pair">
+        <h4 class="text-bold">Name: </h4>
+        <p>@Html.DisplayFor(model => model.Name)</p>
+    </div>
+</div>
+<div class="go-back-container">
+    <a class="link-button" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+    <a class="link-button" asp-action="Index">Back to List</a>
+</div>

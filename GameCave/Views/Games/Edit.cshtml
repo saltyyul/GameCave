@@ -1,0 +1,77 @@
+﻿@model GameCave.Models.ViewModels.GameVMs.GameViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="main-title-container">
+    <h1>Edit Game</h1>
+</div>
+<hr />
+
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div>
+        <div class="form-group">
+            <label asp-for="Name" class="form-lbl"></label><br />
+            <input asp-for="Name" class="form-control" /><br />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="form-lbl"></label><br />
+            <input asp-for="Description" class="form-control" /><br />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price" class="form-lbl"></label><br />
+            <input asp-for="Price" class="form-control" /><br />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Quantity" class="form-lbl"></label><br />
+            <input asp-for="Quantity" class="form-control" /><br />
+            <span asp-validation-for="Quantity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CompanyID" class="form-lbl"></label><br />
+            <select asp-for="CompanyID" class="form-control" asp-items="ViewBag.CompanyID"></select><br />
+            <span asp-validation-for="CompanyID" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <div class="form-group">
+            <p style="width: 25vw;">Please select at least one genre.<br />Note: If you try to save without choosing a genre/genres, the page will refresh and you will not be able to see the names of the genres, but the ids only!</p>
+            <label asp-for="GenreIds" class="form-lbl"></label><br />
+            <select style="height: 20vh;" asp-for="GenreIds" class="form-control" asp-items="ViewBag.GenreID"></select><br />
+            <span asp-validation-for="GenreIds" class="text-danger"></span>
+
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <img style="width: 15vw; height: auto;" src="@Model.ImageURL" />
+        </div>
+
+        <input type="hidden" name="imageUrl" value="@Model.ImageURL" />
+
+        <div class="form-group">
+            <p style="width: 15vw;">NOTE: If you don't want to change the picture just don't do anything at all!</p>
+            <input class="create-button" type="file" class="form-control-file" id="imageFile" name="imageFile">
+        </div>
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <input class="create-button" type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

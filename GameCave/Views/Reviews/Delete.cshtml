@@ -1,0 +1,50 @@
+﻿@model GameCave.Models.ViewModels.ReviewVMs.ReviewViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="main-title-container">
+    <h1>Delete</h1>
+    <h3>Are you sure you want to delete this review from the database? This proccess is irreversible!</h3>
+</div>
+<hr />
+<div>
+    <div class="details-container">
+        <div class="detail-pair">
+            <h4 class="text-bold">Title: </h4>
+            <p>@Html.DisplayFor(model => model.Title)</p>
+        </div>
+        <div class="detail-pair">
+            <h4 class="text-bold">Description: </h4>
+            <p>@Html.DisplayFor(model => model.Description)</p>
+        </div>
+        <div class="detail-pair">
+            <h4 class="text-bold">For Game: </h4>
+            <p>@Html.DisplayFor(model => model.Game.Name)</p>
+        </div>
+        <div class="detail-pair">
+            <h4 class="text-bold">Created: </h4>
+            <p>@Html.DisplayFor(model => model.Created)</p>
+        </div>
+        <div class="detail-pair">
+            <h4 class="text-bold">Modified: </h4>
+            <p>@Html.DisplayFor(model => model.Modified)</p>
+        </div>
+        <div class="detail-pair">
+            <h4 class="text-bold">Created by: </h4>
+            <p>@Html.DisplayFor(model => model.CreatedBy.UserName)</p>
+        </div>
+        <div class="detail-pair">
+            <h4 class="text-bold">Modified by: </h4>
+            <p>@Html.DisplayFor(model => model.ModifiedBy.UserName)</p>
+        </div>
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+
+        <a class="link-button" asp-action="Index">Back to List</a>
+        <input class="delete-button" type="submit" value="Delete" />
+    </form>
+</div>

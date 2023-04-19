@@ -142,6 +142,8 @@ namespace GameCave.Services
             view.Price = game.Price;
             view.Quantity = game.Quantity;
             view.ImageURL = game.ImageURL;
+            view.CompanyID = game.CompanyID;
+            view.GenreIds = _context.GameGenres.Where(x => x.GameID.Equals(game.Id)).Select(x => x.GenreID).ToList();
 
             return view;
         }

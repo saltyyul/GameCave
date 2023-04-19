@@ -1,39 +1,64 @@
-﻿@model GameCave.Models.ViewModels.ReviewVMs.ReviewViewModel
+﻿@model GameCave.Data.Review
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<div class="main-title-container">
-    <h1>Edit your review</h1>
-</div>
+<h1>Edit</h1>
+
+<h4>Review</h4>
 <hr />
-
-<form asp-action="Edit">
-    <div class="form-group">
-        <label asp-for="Title" class="control-label"></label><br />
-        <input asp-for="Title" class="form-control" /><br />
-        <span asp-validation-for="Title" class="text-danger"></span>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameID" class="control-label"></label>
+                <select asp-for="GameID" class="form-control" asp-items="ViewBag.GameID"></select>
+                <span asp-validation-for="GameID" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Created" class="control-label"></label>
+                <input asp-for="Created" class="form-control" />
+                <span asp-validation-for="Created" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Modified" class="control-label"></label>
+                <input asp-for="Modified" class="form-control" />
+                <span asp-validation-for="Modified" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedById" class="control-label"></label>
+                <select asp-for="CreatedById" class="form-control" asp-items="ViewBag.CreatedById"></select>
+                <span asp-validation-for="CreatedById" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedById" class="control-label"></label>
+                <select asp-for="ModifiedById" class="form-control" asp-items="ViewBag.ModifiedById"></select>
+                <span asp-validation-for="ModifiedById" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Description" class="control-label"></label><br />
-        <input asp-for="Description" class="form-control" /><Br />
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <input type="hidden" asp-for="Id" />
-    <div class="form-group">
-        <input type="submit" value="Save" class="create-button" />
-    </div>
-</form>
+</div>
 
-
-<div class="go-back-container">
-    <a class="link-button" asp-action="Index">Back to List</a>
+<div>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-    }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GameCave",
+    "\\GameCave\\Controllers",
+    "\\GameCave\\wwwroot",
+    "\\GameCave\\wwwroot\\css"
   ],
-  "SelectedNode": "\\GameCave.sln",
+  "SelectedNode": "\\GameCave\\Controllers\\CompaniesController.cs",
   "PreviewInSolutionExplorer": false
 }

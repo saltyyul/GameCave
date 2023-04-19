@@ -29,7 +29,7 @@ namespace GameCave.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> AddToCart(int gameId)
+        public async Task<IActionResult> AddToCart(int gameId, string page)
         {
             string userId = (await _userManager.FindByEmailAsync(User.Identity.Name)).Id;
             await EnsureUserHasCart.Ensure(_context, _userManager, userId);
@@ -54,6 +54,9 @@ namespace GameCave.Controllers
             await _context.SaveChangesAsync();
 
             //remains in teh same page but refreshes it
+            if (page.Equals("details"))
+                return RedirectToAction("Details", "Games", new { id = gameId });
+
             return RedirectToAction("Index", "Games");
         }
 

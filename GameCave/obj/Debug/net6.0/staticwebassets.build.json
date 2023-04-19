@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1/qZX8ZWZkHTnxspbDRy+METhQtNJy+pJjaby3iI+Vg=",
+  "Hash": "zrmciAAK6m09M41G6613JF6KJFEfODQvzI0qruhFhRc=",
   "Source": "GameCave",
   "BasePath": "_content/GameCave",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Ayhan\\Source\\Repos\\saltyyul\\GameCave\\GameCave\\wwwroot\\image\\balazs-ketyi-U008D4Jp2CY-unsplash2023041917200160.jpg",
+      "SourceId": "GameCave",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ayhan\\Source\\Repos\\saltyyul\\GameCave\\GameCave\\wwwroot\\",
+      "BasePath": "_content/GameCave",
+      "RelativePath": "image/balazs-ketyi-U008D4Jp2CY-unsplash2023041917200160.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\balazs-ketyi-U008D4Jp2CY-unsplash2023041917200160.jpg"
     },
     {
       "Identity": "C:\\Users\\Ayhan\\Source\\Repos\\saltyyul\\GameCave\\GameCave\\wwwroot\\image\\webpage_imgs\\logo.png",

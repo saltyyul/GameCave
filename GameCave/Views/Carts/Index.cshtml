@@ -4,66 +4,6 @@
     ViewData["Title"] = "Index";
 }
 
-<style>
-    .cart-main {
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-    }
-
-    .cart-container {
-        display: flex;
-        flex-direction: column;
-        width: 50vw;
-        justify-content: space-between;
-        padding: 3vw 5vw 3vw 5vw;
-        margin-left: 3vw;
-        border-radius: 15px;
-        box-shadow: rgb(255,255,255,0.3) 0px 0px 19px 6px;
-    }
-
-        .cart-container .quantity-container, .cart-item {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            /* width: 50vw; */
-            margin-top: 2vh;
-            justify-content: space-between;
-        }
-
-        .cart-container .cart-item > img {
-            width: 10vw;
-            height: 10vw;
-            object-fit: scale-down;
-        }
-
-        .cart-container .quantity-button {
-            color: white;
-            text-decoration: none;
-            margin: 1vw;
-            font-size: 1.3rem;
-        }
-
-        .cart-container .total {
-            text-align: right;
-            font-size: 1.6rem;
-        }
-
-    .cart-main .delivery-form {
-        display: flex;
-        flex-direction: column;
-        width: 23vw;
-        margin: 5vw 5vw 5vw 0px;
-    }
-
-        .cart-main .delivery-form textarea {
-            resize: none;
-            width: 23vw;
-            height: 15vh;
-        }
-</style>
 <div class="cart-main">
     <div class="cart-container">
         @if (Model.Items.Count() > 0)
@@ -88,6 +28,7 @@
                 </div>
                 <hr style="width:100%; color: rgb(255,255,255,0.7);" />
             }
+            <a class="link-button" asp-action="RemoveAll">Remove Everything</a>
             <p class="total">Total: @ViewBag.Total &#x20AC</p>
 
         }

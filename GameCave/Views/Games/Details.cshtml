@@ -46,7 +46,7 @@
             <p class="price">@Html.DisplayFor(model => model.Price) &#x20AC</p>
             <br>
             <div class="add-container">
-                <a class="bttn-add-to-cart" asp-action="AddToCart" asp-route-gameId="@Model.Id">Add to cart</a>
+                <a class="bttn-add-to-cart" asp-action="AddToCart" asp-route-gameId="@Model.Id" asp-route-page="details">Add to cart</a>
             </div>
         </div>
     </div>

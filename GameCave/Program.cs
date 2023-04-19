@@ -41,7 +41,6 @@ builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
 
 var app = builder.Build();
-
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
@@ -73,5 +72,45 @@ app.MapControllerRoute(
     pattern: "{controller=Games}/{action=Index}/{id?}");
 app.MapRazorPages();
 
+
+using (var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+    // Seed the database with the 'admin' role and user
+    var adminRoleExists = roleManager.RoleExistsAsync("Admin").Result;
+    if (!adminRoleExists)
+    {
+        // Create the 'admin' role
+        var role = new IdentityRole("Admin");
+        var createRoleResult = roleManager.CreateAsync(role).Result;
+        if (!createRoleResult.Succeeded)
+        {
+            // Handle error creating 'admin' role
+        }
+    }
+
+    var adminUserExists = userManager.FindByEmailAsync("admin@admin.com").Result;
+
+    if (adminUserExists == null)
+    {
+        // Create the 'admin' user
+        var user = new IdentityUser
+        {
+            UserName = "admin@admin.com",
+            Email = "admin@admin.com",
+            EmailConfirmed = true
+        };
+        var createAdminResult = userManager.CreateAsync(user, "Admin_123").Result;
+
+        if (createAdminResult.Succeeded)
+        {
+            // Add the 'admin' role to the 'admin' user
+            var addToRoleResult = userManager.AddToRoleAsync(user, "Admin").Result;
+        }
+    }
+}
 
 await app.RunAsync();

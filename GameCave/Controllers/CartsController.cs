@@ -122,21 +122,47 @@ namespace GameCave.Controllers
             }
 
             IncreaseGameQuantityInDbWithOne(game);
+            await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Carts");
 
         }
 
         public async Task<IActionResult> RemoveGame(int cartItemId)
         {
-            var item = await _context.CartItems.FindAsync(cartItemId);
-            var quantity = item.Quantity;
-            Game game = await _context.Game.FindAsync(item.GameId);
-            game.Quantity += quantity;
-            _context.Game.Update(game);
-            _context.CartItems.Remove(item);
+            await this.RemoveGameByCartItemId(cartItemId);
+            return RedirectToAction("Index", "Carts");
+        }
+
+
+        public async Task<IActionResult> RemoveAll()
+        {
+            var userId = (await _userManager.FindByNameAsync(User.Identity.Name)).Id;
+            var usersCartId = _context.Carts.Where(u => u.OwnerId.Equals(userId)).Select(c => c.Id).First();
+
+            foreach (var item in _context.CartItems.Where(c => c.CartId.Equals(usersCartId)))
+            {
+                await this.RemoveGameByCartItemId(item.Id);
+            }
 
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Carts");
+        }
+        private async Task<bool> RemoveGameByCartItemId(int cartItemId)
+        {
+            try
+            {
+                var item = await _context.CartItems.FindAsync(cartItemId);
+                var quantity = item.Quantity;
+                Game game = await _context.Game.FindAsync(item.GameId);
+                game.Quantity += quantity;
+                _context.Game.Update(game);
+                _context.CartItems.Remove(item);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         private async void DecreaseGameQuantityFromDbWithOne(Game game)
         {

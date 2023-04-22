@@ -125,9 +125,6 @@ namespace GameCave.Controllers
                 _context.Update(review);
                 await _context.SaveChangesAsync();
 
-                //string userId = (await _userManager.FindByNameAsync(User.Identity.Name)).Id;
-                //await _reviewService.UpdateAsync(reviewView, userId);
-
                 return RedirectToAction("Details", "Games", new { id = reviewView.GameID });
             }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.

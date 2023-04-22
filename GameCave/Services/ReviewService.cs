@@ -19,18 +19,6 @@ namespace GameCave.Services
         }
         public async Task<ReviewViewModel> CreateAsync(ReviewViewModel reviewView, string userId)
         {
-            /*Id 
-            Description 
-            Title 
-            int GameID 
-            Game? Game 
-            DateTime? Created 
-            int? CreatedById 
-            IdentityUser? CreatedBy 
-            DateTime? Modified 
-            int? ModifiedById 
-            IdentityUser? ModifiedBy */
-
             Review review = new Review();
             review.Title = reviewView.Title;
             review.Description = reviewView.Description;

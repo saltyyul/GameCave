@@ -161,6 +161,7 @@ namespace GameCave.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // check if company already exists
         private bool CompanyExists(int id)
         {
             return (_context.Company?.Any(e => e.Id == id)).GetValueOrDefault();

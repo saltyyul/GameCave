@@ -23,10 +23,6 @@
         //can be null as one game might not have any reviews
         public ICollection<Review>? Reviews { get; set; }
 
-        //[NotMapped]
-        //[DisplayName("Upload file")]
-        //public IFormFile ImageFile { get; set; }
-
         public string? ImageURL { get; set; }
     }
 }

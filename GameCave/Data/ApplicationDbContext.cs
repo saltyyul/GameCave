@@ -15,6 +15,7 @@ namespace GameCave.Data
             // Call the base method to configure the default behavior
             base.OnModelCreating(modelBuilder);
 
+            // Configuring the connections in table GameGenres
             modelBuilder.Entity<GameGenres>()
                 .HasOne(gg => gg.Genre)
                 .WithMany(g => g.GameGenres)
@@ -28,6 +29,7 @@ namespace GameCave.Data
             modelBuilder.Entity<GameGenres>()
                 .HasKey(gg => new { gg.GenreID, gg.GameID });
 
+            // Inserting genres into the database
             modelBuilder.Entity<Genre>().HasData(
                 new Data.Genre() { Id = 1, Name = "Horror" },
                 new Data.Genre() { Id = 2, Name = "Action" },
@@ -46,6 +48,7 @@ namespace GameCave.Data
                 new Data.Genre() { Id = 15, Name = "Co-op" }
                 );
 
+            // Inserting companies into the database
             modelBuilder.Entity<Company>().HasData(
                 new Data.Company() { Id = 1, Name = "Ubisoft" },
                 new Data.Company() { Id = 2, Name = "Electronic arts" },
@@ -55,7 +58,7 @@ namespace GameCave.Data
                 new Data.Company() { Id = 6, Name = "Sony IE" }
                 );
 
-
+            // Inserting games into the database
             modelBuilder.Entity<Game>().HasData(
                 new Game()
                 {

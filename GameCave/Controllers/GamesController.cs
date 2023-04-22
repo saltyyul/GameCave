@@ -82,7 +82,7 @@ namespace GameCave.Controllers
                 return NotFound();
             }
 
-
+            // confirms the user in order to allow him certain actions
             string userID = "nouserid";
             bool isAdmin = false;
             if (User.Identity.Name != null)
@@ -139,7 +139,6 @@ namespace GameCave.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            //var errors = ModelState.Values.SelectMany(v => v.Errors);
             ViewData["CompanyID"] = new SelectList(_context.Set<Company>(), "Id", "Id", gameView.CompanyID);
             ViewData["GenreID"] = new SelectList(_context.Set<Genre>(), "Id", "Id", gameView.CompanyID);
             return View(gameView);

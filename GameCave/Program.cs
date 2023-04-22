@@ -12,8 +12,6 @@ using System.Threading.Tasks;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -41,6 +39,8 @@ builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
 
 var app = builder.Build();
+
+// Ensure that database is created upon starting the app
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

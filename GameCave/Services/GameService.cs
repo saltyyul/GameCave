@@ -14,7 +14,7 @@ namespace GameCave.Services
         private readonly IWebHostEnvironment _env;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
-        //private readonly IRepository<GameGenres> _gameGenresRepository;
+        
         public GameService(IRepository<Game> gameRepository, IRepository<Genre> genreRepository, IRepository<Review> reviewRepository, IRepository<Company> companyRepository, IWebHostEnvironment environment, UserManager<IdentityUser> userManager, ApplicationDbContext context)
         {
             _gameRepository = gameRepository;

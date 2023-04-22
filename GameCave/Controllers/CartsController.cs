@@ -157,6 +157,7 @@ namespace GameCave.Controllers
                 game.Quantity += quantity;
                 _context.Game.Update(game);
                 _context.CartItems.Remove(item);
+                await _context.SaveChangesAsync();
                 return true;
             }
             catch (Exception)

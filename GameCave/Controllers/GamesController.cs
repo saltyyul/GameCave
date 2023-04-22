@@ -56,8 +56,8 @@ namespace GameCave.Controllers
             //remains in teh same page but refreshes it
             if (page.Equals("details"))
                 return RedirectToAction("Details", "Games", new { id = gameId });
-
-            return RedirectToAction("Index", "Games");
+            else
+                return RedirectToAction("Index", "Games");
         }
 
 
